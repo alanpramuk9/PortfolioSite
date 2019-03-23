@@ -2,10 +2,10 @@
 $errors         = array();  	// array to hold validation errors
 $data 			= array(); 		// array to pass back data
 // validate the variables ======================================================
-// if any of these variables don't exist, add an error to our $errors array
+// if any of these variables don't exist, add an error to $errors array
 function test_input($data)
 {
-//    $data = trim($data);
+    $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
@@ -35,9 +35,7 @@ function test_input($data)
         $data['errors']  = $errors;
 
     } else {
-        // Passed
-        // Check Email
-            // Passed
+        // Passed. Send email
             $toEmail = 'alanpramuk@alanpramuk.com';
             $subject = 'Contact Request From '.$name;
             $body = '<h2>Contact Request</h2>
