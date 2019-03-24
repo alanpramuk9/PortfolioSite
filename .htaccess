@@ -1,3 +1,21 @@
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
+
+<FilesMatch ".(ttf|otf)$">
+<ifModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</ifModule>
+</FilesMatch>
+
+<FilesMatch "\.(?i:gif|jpe?g|png|ico|css|js|swf)$">
+
+  <IfModule mod_headers.c>
+    Header set Cache-Control "max-age=172800, public, must-revalidate"
+  </IfModule>
+
+</FilesMatch>
+
+<FilesMatch "\.(html)$">
+Header set Cache-Control "public, proxy-revalidate, max-age=432000"
+</FilesMatch>
